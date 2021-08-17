@@ -10,15 +10,17 @@ import akka.stream.{ ActorMaterializer, Materializer }
 import com.github.dakatsuka.akka.http.oauth2.client.Error.UnauthorizedException
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.time.{ Millis, Seconds, Span }
-import org.scalatest.{ BeforeAndAfterAll, DiagrammedAssertions, FlatSpec }
+import org.scalatest.BeforeAndAfterAll
+import org.scalatest.diagrams.Diagrams
+import org.scalatest.flatspec.AnyFlatSpec
 
 import scala.concurrent.duration.Duration
 import scala.concurrent.{ Await, ExecutionContext }
 
-class ClientSpec extends FlatSpec with DiagrammedAssertions with ScalaFutures with BeforeAndAfterAll {
-  implicit val system: ActorSystem        = ActorSystem()
-  implicit val ec: ExecutionContext       = system.dispatcher
-  implicit val materializer: Materializer = ActorMaterializer()
+class ClientSpec extends AnyFlatSpec with Diagrams with ScalaFutures with BeforeAndAfterAll {
+  implicit val system: ActorSystem  = ActorSystem()
+  implicit val ec: ExecutionContext = system.dispatcher
+  //implicit val materializer: Materializer = ActorMaterializer()
   implicit val defaultPatience: PatienceConfig =
     PatienceConfig(timeout = Span(5, Seconds), interval = Span(700, Millis))
 

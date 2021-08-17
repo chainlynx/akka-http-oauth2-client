@@ -28,8 +28,8 @@ class Client(config: ConfigLike, connection: Option[Flow[HttpRequest, HttpRespon
       .mapAsync(1)(AccessToken.apply)
       .runWith(Sink.head)
       .map(Right.apply)
-      .recover {
-        case ex => Left(ex)
+      .recover { case ex =>
+        Left(ex)
       }
   }
 

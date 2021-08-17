@@ -18,10 +18,10 @@ case class AccessToken(
 object AccessToken extends JsonUnmarshaller {
   implicit def decoder: Decoder[AccessToken] = Decoder.instance { c =>
     for {
-      accessToken  <- c.downField("access_token").as[String].right
-      tokenType    <- c.downField("token_type").as[String].right
-      expiresIn    <- c.downField("expires_in").as[Int].right
-      refreshToken <- c.downField("refresh_token").as[Option[String]].right
+      accessToken  <- c.downField("access_token").as[String]
+      tokenType    <- c.downField("token_type").as[String]
+      expiresIn    <- c.downField("expires_in").as[Int]
+      refreshToken <- c.downField("refresh_token").as[Option[String]]
     } yield AccessToken(accessToken, tokenType, expiresIn, refreshToken)
   }
 

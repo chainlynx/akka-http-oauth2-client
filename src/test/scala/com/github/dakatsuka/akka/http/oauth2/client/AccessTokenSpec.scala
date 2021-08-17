@@ -6,15 +6,17 @@ import akka.http.scaladsl.model.ContentTypes.`application/json`
 import akka.stream.{ ActorMaterializer, Materializer }
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.time.{ Millis, Seconds, Span }
-import org.scalatest.{ BeforeAndAfterAll, DiagrammedAssertions, FlatSpec }
+import org.scalatest.BeforeAndAfterAll
+import org.scalatest.diagrams.Diagrams
+import org.scalatest.flatspec.AnyFlatSpec
 
 import scala.concurrent.{ Await, ExecutionContext }
 import scala.concurrent.duration.Duration
 
-class AccessTokenSpec extends FlatSpec with DiagrammedAssertions with ScalaFutures with BeforeAndAfterAll {
-  implicit val system: ActorSystem        = ActorSystem()
-  implicit val ec: ExecutionContext       = system.dispatcher
-  implicit val materializer: Materializer = ActorMaterializer()
+class AccessTokenSpec extends AnyFlatSpec with Diagrams with ScalaFutures with BeforeAndAfterAll {
+  implicit val system: ActorSystem  = ActorSystem()
+  implicit val ec: ExecutionContext = system.dispatcher
+  //implicit val materializer: Materializer = ActorMaterializer()
   implicit val defaultPatience: PatienceConfig =
     PatienceConfig(timeout = Span(5, Seconds), interval = Span(700, Millis))
 
